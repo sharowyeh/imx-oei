@@ -103,15 +103,6 @@ OBJS += $(HW_OBJS)
 
 TARGETS = $(OUT)/$(TARGET)
 
-ifeq ($(OEI),tcm)
-ifneq ($(SOC),$(filter $(SOC), MIMX95 MIMX94))
-    $(error M7 TCM OEI is available for iMX95/94 A0/A1 boards only, requested for SOC=$(SOC), REV=$(REV))
-endif
-ifneq ($(REV),$(filter $(REV), A0 A1))
-    $(error M7 TCM OEI is available for iMX95/94 A0/A1 boards only, requested for SOC=$(SOC), REV=$(REV))
-endif
-endif
-
 img : $(TARGETS)
 
 all :
