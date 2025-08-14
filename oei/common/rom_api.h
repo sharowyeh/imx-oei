@@ -32,8 +32,9 @@ enum boot_device
     USB_BOOT,
     USB2_BOOT,
     UNKNOWN_BOOT,
-    BOOT_DEV_NUM = UNKNOWN_BOOT,
 };
+
+#define BOOT_DEV_NUM UNKNOWN_BOOT
 
 enum boot_dev_type
 {
