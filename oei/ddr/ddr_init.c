@@ -279,10 +279,12 @@ int Ddrc_Init(struct dram_timing_info *dtiming, uint32_t img_id)
         /** Sign collected training data */
         Ddr_Training_Data_Sign(img_id);
     }
+#endif
 
     /* save the ddr info for retention */
     Ddr_Cfg_Save(dtiming);
 
+#if (!defined(DDR_NO_PHY))
     /* save the ddr PHY trained CSR for retention */
     Ddr_Phy_Trained_Csr_Save();
 #endif
