@@ -10,7 +10,9 @@
 
 /* Local Functions */
 
+#if (!defined(DDR_NO_PHY))
 static uint32_t DDR_SimpleDivRound(uint32_t val, uint32_t denom);
+#endif
 
 /*--------------------------------------------------------------------------*/
 /* DDR Controller Idle status                                               */
@@ -329,6 +331,7 @@ int Ddrc_Init(struct dram_timing_info *dtiming, uint32_t img_id)
     return ret;
 }
 
+#if (!defined(DDR_NO_PHY))
 /*--------------------------------------------------------------------------*/
 /* Divide and round (up or down) function                                   */
 /*--------------------------------------------------------------------------*/
@@ -351,3 +354,4 @@ static uint32_t DDR_SimpleDivRound(uint32_t val, uint32_t denom)
 
     return absV;
 }
+#endif
