@@ -58,6 +58,9 @@ static uint32_t Ddr_Load_Training_Data(uint32_t offset)
      */
     lsize = Rom_Api_Boot_Dev_Is_Stream() ? QB_STATE_STORAGE_SIZE : sizeof(ddrphy_qb_state);
     size = Rom_Api_Read(off, lsize, dest);
+#ifdef DEBUG
+    printf("DDR OEI: Loading training data from offset 0x%08X, lsize %u bytes to 0x%08X, size %u bytes\n", off, lsize, (uint32_t)dest, size);
+#endif
 
     return (size == lsize ? ROM_API_OKAY : ROM_API_ERR_INV_PAR);
 }
@@ -101,6 +104,9 @@ int oei_main(uint32_t argc, uint32_t *argv)
     }
 
     ret = Ddrc_Init(&dram_timing, id);
+#ifdef DEBUG
+    printf("DDR OEI: DDRC Init returned %d, ddrphy cfg num %u, id %u\n", ret, dram_timing.ddrphy_cfg_num, id);
+#endif
 
 #ifdef DDR_IEE
     if (ret == 0)

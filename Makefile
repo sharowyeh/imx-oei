@@ -48,7 +48,7 @@ export AT
 ifdef d
     DEBUG := $(d)
 endif
-DEBUG ?= 0
+DEBUG ?= 1
 
 ifeq ($(DEBUG),1)
     FLAGS += -DDEBUG

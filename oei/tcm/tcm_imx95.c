@@ -5,6 +5,8 @@
 #include "stdbool.h"
 #include "edma.h"
 #include "soc_edma.h"
+// for printf output debug message
+#include <stdio.h>
 
 /**
  * struct mem_tbl - defined a memory block with start and end address
@@ -81,6 +83,10 @@ static int Tcm_Init_By_Dma(void)
     unsigned int transfer_size = 0;
 
     pup = Power_Up_M7mix();
+#ifdef DEBUG
+    printf("TCM OEI: M7MIX power-up by OEI: %s\n", pup ? "true" : "false");
+#endif
+
     for (i = 0; i < sizeof(tcm_tbl) / sizeof(mem_tbl); i++)
     {
         transfer_size = (tcm_tbl[i].end_addr - tcm_tbl[i].start_addr) + 1;
@@ -109,6 +115,9 @@ exit:
     {
         Tcm_Retention();
         Power_Down_M7mix();
+#ifdef DEBUG
+        printf("TCM OEI: M7MIX TCM retention and powered-down by OEI\n");
+#endif
     }
 
     return ret;
